@@ -20,7 +20,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, card }) => {
           <img
             className={css.img}
             src={card.urlRegular}
-            alt={card.description}
+            alt={card.description || "a photo"}
           />
         </div>
         <button className={css.button} onClick={onClose}>

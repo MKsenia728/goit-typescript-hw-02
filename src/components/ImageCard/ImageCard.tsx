@@ -6,7 +6,7 @@ const ImageCard: React.FC<CardProps> = ({ card }) => {
   return (
     <div className={css.card}>
       <div className={css.imageDiv}>
-        <img src={card.urlSmall} alt={card.description} />
+        <img src={card.urlSmall} alt={card.description || "a photo"} />
       </div>
       <div className={css.info}>
         <p className={css.p}>
