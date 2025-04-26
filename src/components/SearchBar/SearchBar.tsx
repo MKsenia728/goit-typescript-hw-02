@@ -1,13 +1,17 @@
 import { IoSearchSharp } from "react-icons/io5";
 import css from "./SearchBar.module.css";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
+import { SearchBarProps } from "./SearcBarProps";
 
-const SearchBar = ({ onSubmit, topic }) => {
-  const [query, setQuery] = useState(topic);
-  const handleSubmit = (e) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSubmit, topic }) => {
+  const [query, setQuery] = useState<string>(topic);
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const searchForm = e.target;
-    const search = searchForm.elements.search.value.trim();
+    const searchForm = e.target  as HTMLFormElement;
+    const formElements = searchForm.elements as typeof searchForm.elements & {
+      search: HTMLInputElement;
+    };
+    const search = formElements.search.value.trim();
     onSubmit(search);
   };
 

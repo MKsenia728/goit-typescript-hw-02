@@ -8,18 +8,21 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 import css from "./App.module.css";
+import { Card, FetchData } from "./App.types";
+
+
 
 function App() {
-  const [topic, setTopic] = useState("");
-  const [page, setPage] = useState(1);
-  const [maxPages, setMaxPages] = useState(0);
-  const [gallery, setGallery] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentCard, setCurrentCard] = useState(null);
+  const [topic, setTopic] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [maxPages, setMaxPages] = useState<number>(0);
+  const [gallery, setGallery] = useState<Card[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [currentCard, setCurrentCard] = useState<Card | null>(null);
 
-  const searchGallery = (query) => {
+  const searchGallery = (query: string): void => {
     if (query === "") {
       toast("Please, enter word for searching");
       return;
@@ -31,16 +34,16 @@ function App() {
     setMaxPages(0);
   };
 
-  const addPage = () => {
+  const addPage = (): void => {
     return setPage(page + 1);
   };
 
-  const openModal = (card) => {
+  const openModal = (card: Card): void => {
     setIsOpen(true);
     setCurrentCard(card);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsOpen(false);
     setCurrentCard(null);
   };
@@ -53,7 +56,7 @@ function App() {
       try {
         setLoading(true);
         setError(false);
-        const data = await getGalleryByQuery(topic, page);
+        const data: FetchData = await getGalleryByQuery<FetchData>(topic, page);
         if (data.results.length === 0) {
           toast("Nothing found for your request");
           return;

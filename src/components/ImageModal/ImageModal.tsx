@@ -1,9 +1,10 @@
 import css from "./ImageModal.module.css";
 import Modal from "react-modal";
 import { IoClose } from "react-icons/io5";
+import { ImageModalProps} from "./ImageModal.types"
 Modal.setAppElement("#root");
 
-const ImageModal = ({ isOpen, onClose, card }) => {
+const ImageModal: React.FC<ImageModalProps> = ({ isOpen, onClose, card }) => {
   if (!card) return;
   return (
     <>

@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const serverPath = "https://api.unsplash.com/search/photos/";
 const key = "9o91SUnM_Hj-Zab96NPuLkle7Ye1X7d3y5GXBjMOW3g";
 
-export const getGalleryByQuery = async (topic, currentPage) => {
-  const response = await axios.get(serverPath, {
-    params: {
+export const getGalleryByQuery = async <T>(topic: string, currentPage: number): Promise<T> => {
+  const response: AxiosResponse<T> = await axios.get<T>(serverPath, {
+    params: { 
       client_id: key,
       query: topic,
       page: currentPage,
@@ -16,3 +16,4 @@ export const getGalleryByQuery = async (topic, currentPage) => {
 
   return response.data;
 };
+

@@ -1,5 +1,8 @@
 import css from "./ImageCard.module.css";
-const ImageCard = ({ card }) => {
+import { CardProps } from "./ImageCard.types";
+
+
+const ImageCard: React.FC<CardProps> = ({ card }) => {
   return (
     <div className={css.card}>
       <div className={css.imageDiv}>

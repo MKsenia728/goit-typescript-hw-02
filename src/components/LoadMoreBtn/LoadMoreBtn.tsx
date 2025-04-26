@@ -1,5 +1,7 @@
 import css from "./LoadMoreBtn.module.css";
-const LoadMoreBtn = ({ onLoad, maxPages }) => {
+import { LoadMoreBtnProps } from "./LoadMoreBtn.types";
+
+const LoadMoreBtn: React.FC<LoadMoreBtnProps> = ({ onLoad, maxPages }) => {
   return (
     <button className={css.button} onClick={onLoad}>
       Load more... {maxPages} pages
